@@ -14,6 +14,7 @@ def get_sub_windows(image: Image):
         image.crop(Config.SECONDARY_BBOX)
     ]
 
+
 def translate_bw_color(bw_num, image_mode):
     # Kind of an ugly solution...
     # This is supposed to make the default background color adjust based on the image mode.
@@ -23,6 +24,7 @@ def translate_bw_color(bw_num, image_mode):
             [[bw_num]]
         )
     ).convert(image_mode).getpixel((0, 0))
+
 
 def parse_primary_window(cropped_image: Image, flatten: bool = True) -> np.array:
     # Possible improvement: Not making a 2D array and flattening it later but making a 1D array from the start.
@@ -77,4 +79,3 @@ if __name__ == "__main__":
 
     matplotlib.pyplot.imshow(data_1, interpolation="nearest")
     matplotlib.pyplot.show()
-
