@@ -2,23 +2,26 @@ from enum import Enum
 
 
 class Block(Enum):
-    LIGHT_BLUE = "00001111"
-    BLUE = "10001110"
-    ORANGE = "00101110"
-    PURPLE = "01001110"
-    GREEN = "01101100"
-    RED = "11000110"
+    LIGHT_BLUE = 1
+    BLUE = 2
+    ORANGE = 3
+    PURPLE = 4
+    GREEN = 5
+    RED = 6
 
 
-_map = {
-    "10001110": Block.BLUE,
-    "00001111": Block.LIGHT_BLUE,
-    "00101110": Block.ORANGE,
-    "01001110": Block.PURPLE,
-    "01101100": Block.GREEN,
-    "11000110": Block.RED
-}
-
-
-def get(string):
-    return _map[string]
+def getBlock(block_string):
+    # Could be solved using map, but it doesn't really matter with this few objects
+    if block_string == "11110000":
+        return Block.LIGHT_BLUE
+    if block_string == "10001110":
+        return Block.BLUE
+    if block_string == "00101110":
+        return Block.ORANGE
+    if block_string == "01001110":
+        return Block.PURPLE
+    if block_string == "01101100":
+        return Block.GREEN
+    if block_string == "11000110":
+        return Block.RED
+    return None

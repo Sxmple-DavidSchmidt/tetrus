@@ -48,24 +48,25 @@ def parse_secondary_window(cropped_image: Image, flatten: bool = True) -> np.arr
     blocks = []
 
     for bbox in Config.SECONDARY_SUBBBOX_RELATIVE:
-        subimage = cropped_image.crop(box=bbox)
+        subimage = cropped_image.crop(box=bbox)  # TODO is not actually necessary. Could be solved just by using math. Keeping for now.
 
         if subimage.getpixel((0, 26)) != default_color:
             blocks.append(Block.Block.LIGHT_BLUE)
         else:
-            block = ""
+            block_string = ""
             for y in range(2):
                 for x in range(3):
                     px = (26 + x * 26, 13 + y * 26)
-                    block += "1" if subimage.getpixel(px) != default_color else "0"
-                block += "0"
-            blocks.append(Block.get(block))
-        subimage.save(f"{bbox[1]}.png")
+                    block_string += "1" if subimage.getpixel(px) != default_color else "0"
+                    subimage.putpixel(px, 255)
+                block_string += "0"
+            blocks.append(Block.getBlock(block_string))
+            subimage.save(f"{bbox[1]}.png")
     return blocks
 
 
 if __name__ == "__main__":
-    image_path = Path("assets", "testimages", "ingame_002.png")
+    image_path = Path("assets", "test", "images", "image_002.png")
     image = Image.open(image_path)
     image = image.convert("L")
 
