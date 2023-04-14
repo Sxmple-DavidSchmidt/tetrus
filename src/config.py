@@ -1,6 +1,7 @@
-from enum import Enum
-import numpy as np
+"""Module to store constants used throughout the program"""
+# Should likely be replaced with something better down the road
 
+import numpy as np
 
 LIGHT_BLUE = np.array([[0, 0, 0, 0], [1, 1, 1, 1]])
 ORANGE = np.array([[0, 0, 1, 0], [1, 1, 1, 0]])
